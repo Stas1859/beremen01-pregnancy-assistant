@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Мониторинг</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <style>
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: system-ui, sans-serif;
+      background: #f2f3f5;
+      color: #333;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h2 {
+      font-size: 20px;
+      text-align: center;
+      margin: 0 auto 20px;
+      position: relative;
+    }
+
+    h2::before {
+      content: "←";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 18px;
+      color: #4f8fba;
+      cursor: pointer;
+    }
+
+    .tracking-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .tracking-card {
+      width: 48%;
+      background: #fff;
+      border-radius: 16px;
+      padding: 10px 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      font-size: 15px;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-height: 56px;
+      text-decoration: none;
+    }
+
+    .tracking-card .icon {
+      position: absolute;
+      left: 12px;
+      font-size: 20px;
+    }
+
+    .tracking-card .label {
+      flex: 1;
+      text-align: center;
+      font-weight: 500;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h2 onclick="window.location.href='/main'">Мониторинг</h2>
+
+  <div class="tracking-grid">
+    <a href="/weight" class="tracking-card">
+      <span class="icon">⚖️</span>
+      <span class="label">Вес</span>
+    </a>
+    <a href="/pressure" class="tracking-card">
+      <span class="icon">💓</span>
+      <span class="label">Давление</span>
+    </a>
+    <a href="/mood" class="tracking-card">
+      <span class="icon">😊</span>
+      <span class="label">Самочувствие</span>
+    </a>
+    <a href="/sugar" class="tracking-card">
+      <span class="icon">🩸</span>
+      <span class="label">Сахар</span>
+    </a>
+    <a href="/tests" class="tracking-card">
+      <span class="icon">📊</span>
+      <span class="label">Анализы</span>
+    </a>
+    <a href="/files" class="tracking-card">
+      <span class="icon">📁</span>
+      <span class="label">Файлы</span>
+    </a>
+    <a href="/notes" class="tracking-card">
+      <span class="icon">📝</span>
+      <span class="label">Заметки</span>
+    </a>
+  </div>
+</body>
+</html>
