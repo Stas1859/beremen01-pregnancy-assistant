@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Добро пожаловать</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      margin: 0;
+      background: white;
+      font-family: system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .emoji {
+      font-size: 96px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.3s;
+    }
+
+    .text {
+      font-size: 20px;
+      color: #333;
+      margin-top: 16px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 0.8s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="emoji">🤰</div>
+  <div class="text">Ассистент вашей беременности</div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <!-- After: welcome.html (fetching from DB to decide navigation) -->
+  <script>
+      const tg = window.Telegram.WebApp;
+      const user = tg?.initDataUnsafe?.user;
+      let uid = null;
+      if (!user?.id) {
+          alert("❗ Не удалось получить Telegram ID. Пожалуйста, запустите через Telegram.");
+      } else {
+          uid = user.id.toString();
+          const username = user.username || "";
+          sessionStorage.setItem("tg_user_id", uid);
+          sessionStorage.setItem("tg_username", username);
+          fetch("/register_user", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ user_id: uid, username })
+          });
+      }
+
+      // ⏳ After 2 seconds, determine next page via DB query
+      setTimeout(async () => {
+          if (!uid) return;
+          try {
+              const res = await fetch(`/load_user_data?user_id=${uid}`);
+              const data = await res.json();
+              if (data.start_date) {
+                  window.location.href = "/main";  // Pregnancy start in DB -> go to main page
+              } else {
+                  window.location.href = "/choose"; // No data in DB -> go to date selection
+              }
+          } catch (e) {
+              console.warn("Error loading user data", e);
+              window.location.href = "/choose";
+          }
+      }, 2000);
+  </script>
+</body>
+</html>
