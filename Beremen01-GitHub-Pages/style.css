@@ -1,0 +1,190 @@
+/* Стили для Beremen01 App */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #f2f3f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+#app {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 16px;
+    min-height: 100vh;
+}
+
+.welcome, .main-menu, .weight-page, .pressure-page, .mood-page, .sugar-page {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.emoji {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    margin-bottom: 16px;
+    color: #333;
+}
+
+h3 {
+    margin: 20px 0 12px;
+    color: #555;
+    text-align: left;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.menu-item {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+}
+
+.menu-item:hover {
+    background: #e9ecef;
+    border-color: #2aabee;
+    transform: translateY(-2px);
+}
+
+.menu-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.menu-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.input-group {
+    margin: 16px 0;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2aabee;
+}
+
+.input-group input[type="range"] {
+    padding: 0;
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+}
+
+.btn-primary, .btn-secondary {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 8px;
+    min-width: 120px;
+}
+
+.btn-primary {
+    background: #2aabee;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2298d4;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #f8f9fa;
+    color: #666;
+    border: 2px solid #e9ecef;
+}
+
+.btn-secondary:hover {
+    background: #e9ecef;
+    color: #333;
+}
+
+.history-list {
+    margin-top: 16px;
+}
+
+.history-item {
+    background: #f8f9fa;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.history-item span {
+    margin: 0 8px;
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    #app {
+        padding: 8px;
+    }
+    
+    .welcome, .main-menu, .weight-page, .pressure-page, .mood-page, .sugar-page {
+        padding: 16px;
+    }
+    
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .emoji {
+        font-size: 48px;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.welcome, .main-menu, .weight-page, .pressure-page, .mood-page, .sugar-page {
+    animation: fadeIn 0.3s ease-out;
+}
